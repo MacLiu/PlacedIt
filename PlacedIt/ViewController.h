@@ -10,4 +10,16 @@
 
 @interface ViewController : UIViewController
 
+@property(strong,nonatomic)NSMutableDictionary *item;
+@property(strong,nonatomic)NSMutableArray *items; //of NSDictionary
+@property(nonatomic)NSInteger index;
+
+//IBOutlets
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+
+
+//IBaction
+- (IBAction)saveButtonPressed:(UIBarButtonItem *)sender;
+
 @end
+

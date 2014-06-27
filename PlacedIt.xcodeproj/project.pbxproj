@@ -21,6 +21,8 @@
 		29C85EA21953880500A35E89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29C85E841953880500A35E89 /* UIKit.framework */; };
 		29C85EAA1953880500A35E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29C85EA81953880500A35E89 /* InfoPlist.strings */; };
 		29C85EAC1953880500A35E89 /* PlacedItTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C85EAB1953880500A35E89 /* PlacedItTests.m */; };
+		29C85EB71953884800A35E89 /* PlacedItTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C85EB61953884800A35E89 /* PlacedItTableViewController.m */; };
+		29C85EBA1953888700A35E89 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C85EB91953888700A35E89 /* AddItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		29C85EA71953880500A35E89 /* PlacedItTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlacedItTests-Info.plist"; sourceTree = "<group>"; };
 		29C85EA91953880500A35E89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		29C85EAB1953880500A35E89 /* PlacedItTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlacedItTests.m; sourceTree = "<group>"; };
+		29C85EB51953884800A35E89 /* PlacedItTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacedItTableViewController.h; sourceTree = "<group>"; };
+		29C85EB61953884800A35E89 /* PlacedItTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacedItTableViewController.m; sourceTree = "<group>"; };
+		29C85EB81953888700A35E89 /* AddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemViewController.h; sourceTree = "<group>"; };
+		29C85EB91953888700A35E89 /* AddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +121,12 @@
 				29C85E8F1953880500A35E89 /* AppDelegate.h */,
 				29C85E901953880500A35E89 /* AppDelegate.m */,
 				29C85E921953880500A35E89 /* Main.storyboard */,
+				29C85EB51953884800A35E89 /* PlacedItTableViewController.h */,
+				29C85EB61953884800A35E89 /* PlacedItTableViewController.m */,
 				29C85E951953880500A35E89 /* ViewController.h */,
 				29C85E961953880500A35E89 /* ViewController.m */,
+				29C85EB81953888700A35E89 /* AddItemViewController.h */,
+				29C85EB91953888700A35E89 /* AddItemViewController.m */,
 				29C85E981953880500A35E89 /* Images.xcassets */,
 				29C85E871953880500A35E89 /* Supporting Files */,
 			);
@@ -250,7 +260,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				29C85E971953880500A35E89 /* ViewController.m in Sources */,
+				29C85EB71953884800A35E89 /* PlacedItTableViewController.m in Sources */,
 				29C85E911953880500A35E89 /* AppDelegate.m in Sources */,
+				29C85EBA1953888700A35E89 /* AddItemViewController.m in Sources */,
 				29C85E8D1953880500A35E89 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
