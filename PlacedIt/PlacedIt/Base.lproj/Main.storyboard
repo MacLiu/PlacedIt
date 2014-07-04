@@ -53,7 +53,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="push" identifier="toViewController" id="je6-k4-4vQ"/>
+                        <segue destination="vXZ-lx-hvc" kind="push" identifier="toViewController" id="jf0-id-bTd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WkE-Wc-qMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -78,12 +78,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fi9-8s-WDt">
-                                <rect key="frame" x="20" y="111" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
-                            </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RDz-GM-qsz">
                                 <rect key="frame" x="20" y="149" width="280" height="351"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -95,7 +89,7 @@
                                 <rect key="frame" x="20" y="508" width="280" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <state key="normal" title="Save">
+                                <state key="normal" title="Place It">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -103,6 +97,12 @@
                                     <action selector="saveButtonPressed:" destination="oqm-rc-vmb" eventType="touchUpInside" id="qUp-iT-mGV"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="General Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GRN-rv-8Za">
+                                <rect key="frame" x="20" y="111" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -121,12 +121,75 @@
                     <connections>
                         <outlet property="detailTextView" destination="RDz-GM-qsz" id="4gz-2A-Q43"/>
                         <outlet property="itemTextField" destination="Gph-3l-U41" id="Atn-AT-aHM"/>
-                        <outlet property="locationTextfield" destination="fi9-8s-WDt" id="aUZ-0o-dTd"/>
+                        <outlet property="locationTextField" destination="GRN-rv-8Za" id="I4n-03-Atx"/>
+                        <segue destination="zaf-DH-chO" kind="push" identifier="toViewLocation" id="Ezz-sY-OXa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iqe-KQ-ZP7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="799" y="721"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="kvl-2y-cEf">
+            <objects>
+                <viewController id="zaf-DH-chO" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f9g-bf-q6E"/>
+                        <viewControllerLayoutGuide type="bottom" id="yef-BW-JEO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="szb-D5-eeP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Izc-S8-DbF">
+                                <rect key="frame" x="0.0" y="63" width="320" height="505"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0is-Q8-6HH">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="save" id="hpk-CR-8pR">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="zaf-DH-chO" id="Pn0-vS-OHB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="Izc-S8-DbF" id="E2K-Be-YNj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8y8-Pd-0ZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1193" y="721"/>
+        </scene>
+        <!--Item Map View Controller - Found It!-->
+        <scene sceneID="Uq2-ec-e6w">
+            <objects>
+                <viewController id="da4-Lo-5at" customClass="ItemMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vug-Ni-eTm"/>
+                        <viewControllerLayoutGuide type="bottom" id="8KU-ha-yye"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d5U-kb-rri">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dzC-Sb-wAg">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Found It!" id="dLz-IS-E95"/>
+                    <connections>
+                        <outlet property="mapView" destination="dzC-Sb-wAg" id="b39-aG-gsG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P0s-Ff-uhf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1193" y="50"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -141,19 +204,31 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Yt-tT-A61">
-                                <rect key="frame" x="20" y="84" width="280" height="464"/>
+                                <rect key="frame" x="20" y="84" width="280" height="426"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIG-jf-pZk">
+                                <rect key="frame" x="20" y="518" width="280" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Locate">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="da4-Lo-5at" kind="push" identifier="toItemMap" id="PmB-vS-Sxo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="1zL-mp-hoI">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="O0V-tA-DTY">
                             <connections>
-                                <action selector="saveButtonPressed:" destination="vXZ-lx-hvc" id="6Aj-JM-aYa"/>
+                                <action selector="saveButtonPressed:" destination="vXZ-lx-hvc" id="VBT-d6-PE4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -163,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="76"/>
+            <point key="canvasLocation" x="799" y="50"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dUt-3e-chh">

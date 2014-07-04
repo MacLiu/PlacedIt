@@ -7,9 +7,12 @@
 //
 
 #import "AddItemViewController.h"
+#import "MapViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import <MapKit/MapKit.h>
 
 @interface AddItemViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
-@property (strong, nonatomic) NSMutableArray *items; // of NSDctionary
+
 @end
 
 @implementation AddItemViewController
@@ -27,9 +30,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor blackColor];
+    self.viewLocation.layer.cornerRadius = 8;
+    self.viewLocation.layer.borderWidth = 1;
+    self.viewLocation.layer.borderColor = [UIColor grayColor].CGColor;
+    self.viewLocation.clipsToBounds = YES;
     
     self.itemTextField.delegate = self;
-    self.locationTextfield.delegate = self;
+    self.locationTextField.delegate = self;
     
     // Gesture Reconizer to dismiss keybard when background if touched
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
@@ -40,6 +47,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[MapViewController class]]) {
+        MapViewController *targetVC = segue.destinationViewController;
+        targetVC.itemAsPropertyList = [[self itemInfoAsDictionary] mutableCopy];
+    }
 }
 
 #pragma mark - Dissmissing Keyboard/UITextfield delegates
@@ -53,19 +68,13 @@
 
 
 #pragma mark - IBActions
-- (IBAction)saveButtonPressed:(UIButton *)sender {
-    if ([self.itemTextField.text length] ==  0 || [self.locationTextfield.text length] == 0) {
+- (IBAction)saveButtonPressed:(UIButton *)sender
+{
+    if ([self.itemTextField.text length] ==  0 || [self.locationTextField.text length] == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing Contents" message:@"Please make sure all fields are filled in." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
     }else {
-        self.items = [[[NSUserDefaults standardUserDefaults] objectForKey:@"ITEM_KEY"] mutableCopy];
-        if (!self.items) self.items = [[NSMutableArray alloc] init];
-        
-        [self.items addObject:[self itemInfoAsDictionary]];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:self.items forKey:@"ITEM_KEY"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self.navigationController popViewControllerAnimated:YES];
+         [self performSegueWithIdentifier:@"toViewLocation" sender:self];
     }
 }
 
@@ -108,9 +117,9 @@
     if (self.image != nil) {
         UIImage *newImage = [self resizeImageWithWidth:160.0 Height:160.0];
         
-        return @{@"item": self.itemTextField.text, @"location" : self.locationTextfield.text, @"detail" : self.detailTextView.text, @"image" : UIImageJPEGRepresentation(newImage, 1.0)};
+        return @{@"item": self.itemTextField.text, @"detail" : self.detailTextView.text, @"location" : self.locationTextField.text, @"image" : UIImageJPEGRepresentation(newImage, 1.0)};
     }
-    return @{@"item": self.itemTextField.text, @"location" : self.locationTextfield.text, @"detail" : self.detailTextView.text};
+    return @{@"item": self.itemTextField.text, @"detail" : self.detailTextView.text, @"location" : self.locationTextField.text};
 }
 
 -(UIImage *)resizeImageWithWidth:(float)width Height:(float)height
@@ -128,7 +137,7 @@
 {
     [self.itemTextField resignFirstResponder];
     [self.detailTextView resignFirstResponder];
-    [self.locationTextfield resignFirstResponder];
+    [self.locationTextField resignFirstResponder];
 }
 
 @end

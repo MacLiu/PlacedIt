@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ItemMapViewController.h"
 
 @interface ViewController ()
 
@@ -36,12 +37,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[ItemMapViewController class]]) {
+        ItemMapViewController *targetVC = segue.destinationViewController;
+        targetVC.item = [self.items objectAtIndex:self.index];
+    }
+}
+
 - (IBAction)saveButtonPressed:(UIBarButtonItem *)sender {
     [self.item setValue:self.textView.text forKey:@"detail"];
     [self.items replaceObjectAtIndex:self.index withObject:self.item];
     [[NSUserDefaults standardUserDefaults] setObject:self.items forKey:@"ITEM_KEY"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - Helper Methods

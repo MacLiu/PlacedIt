@@ -12,11 +12,11 @@
 
 //IBOutlets
 @property (strong, nonatomic) IBOutlet UITextField *itemTextField;
-@property (strong, nonatomic) IBOutlet UITextField *locationTextfield;
 @property (strong, nonatomic) IBOutlet UITextView *detailTextView;
-
+@property (strong, nonatomic) IBOutlet UIButton *viewLocation;
 @property (strong, nonatomic) UIImagePickerController *imagePickerController;
 @property (strong, nonatomic) UIImage *image;
+@property (strong, nonatomic) IBOutlet UITextField *locationTextField;
 
 //IBActions
 - (IBAction)saveButtonPressed:(UIButton *)sender;
